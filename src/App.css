@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.MeaningSearch {
+  border: 1px solid #282c34;
+  text-align: start;
+}
+
+.enfasis {
+  font-weight: 600;
+  margin-right: 1em;
+}
+
+.definition {
+  border-bottom: 1px solid #282c34;
+  margin: 0 0 2rem 0.5rem;
+}
+
+.example {
+  font-weight: 400;
+  font-style: italic;
+}
