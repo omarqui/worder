@@ -1,47 +1,45 @@
 import React, { useState, FunctionComponent }  from 'react';
 import "./App.css";
 
-
-
 function capitalize(word:String){
     return word[0].toUpperCase()+word.substr(1);
 }
 
 const MeaningSearch:FunctionComponent = ()=>{
-    interface IDataDictonary{
-        partOfSpeech: String,
-        definitions: { definition: string, example: string}[],
+    interface IDictonaryData{
+        word: string,
+        phonetics: { 
+            text: string, 
+            audio: string
+        }[],
+        meanings: {
+            partOfSpeech: string,
+            definitions: { 
+                definition: string, example: string
+            }[],
+        }[],
     }
 
     const [searchedWord, setSearchedWord] = useState("hola");   
-    const [definitions, setDefinitions] = useState([
+    const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
         {
-            part:"noun", 
-            definition: "This is a definition",
-            example: "This is a example"
+           word: "",
+           meanings: [],
+           phonetics: []
         },
-        {
-            part:"verb", 
-            definition: "Another def",
-            example: "This is another a example"
-        }
-    ]);
+    );
     
     function makeSearch(){
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
             .then(res=> res.json())
-            .then(data=>{
-                console.log(data);
-                const defs = data[0].meanings.map((def:IDataDictonary)=>{
-                    
-                    const defi = (def?.definitions.length > 0 ? def?.definitions[0]?.definition : '');
-                    return {
-                        part: def.partOfSpeech,
-                        definition: defi,
-                        example: def?.definitions[0]?.example
-                    }
-                });
-                setDefinitions(defs);
+            .then((data:IDictonaryData[])=>{
+                const dictionaryData: IDictonaryData = data.length > 0 ? data[0] : {
+                    meanings: [],
+                    phonetics: [],
+                    word: ""
+                };
+                
+                setDictionaryDefinition(dictionaryData);
             });
     }
 
@@ -58,18 +56,31 @@ const MeaningSearch:FunctionComponent = ()=>{
                         if(e.key === "Enter") makeSearch(); 
                     }}/>
                 <div>
-                <h3>Definitions</h3>
+                <h3>Definitions for "{dictionaryDefinition.word}"</h3>
                 {
-                    definitions.map(def=>(
-                        <div className="definition" key={def.part}>
-                            <div>
-                                <span className="enfasis">{capitalize(def.part)}:</span>
-                                <span>{def.definition}</span>
-                            </div>
+                    dictionaryDefinition.meanings.map(meaning=>(
+                        <div className="definitionWrapper card m-2" key={meaning.partOfSpeech}>
+                            <div className="card-body">
+                                <h5 className="card-title">{capitalize(meaning.partOfSpeech)}</h5>
+                                
+                                {meaning.definitions.map((def,position)=>(
+                                <div className="definition">
+                                    <div>
+                                        <span>{position+1}</span>
+                                        <span>
+                                            <div>
+                                                <span>{def.definition}</span>
+                                            </div>
 
-                            <div>
-                                <span className="enfasis">Example:</span>
-                                <span className="example">"{def.example}"</span>
+                                            <div>
+                                                <span className="enfasis">Example:</span>
+                                                <span className="example">"{def.example}"</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                                ))}
                             </div>
                         </div>
 
