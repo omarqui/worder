@@ -25,12 +25,12 @@ export const MeaningCard = ({ meaning }: MeaningProps) => {
 
                 {meaning.definitions.map((def, position) => (
                     <div className="definition">
-                        <div>
-                            <span>{position + 1}</span>
-                            <span>
+                        <div className="definitionLayout">
+                            <div className="definitionPosition">{position + 1}</div>
+                            <div >
                                 <DefinitionText value={def.definition} />
                                 <ExampleText value={def.example} />
-                            </span>
+                            </div>
                         </div>
 
                     </div>

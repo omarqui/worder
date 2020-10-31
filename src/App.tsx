@@ -34,7 +34,7 @@ function App() {
             One of three columns
           </div> */}
           <div className="col-sm">
-            <h2>Meaning Search</h2>
+            <h2 className="title">Meaning Search</h2>
             <MeaningSearch setDictionaryDefinition={(dictionary: IDictonaryData) => {
               setDictionaryDefinition(dictionary)
             }} />

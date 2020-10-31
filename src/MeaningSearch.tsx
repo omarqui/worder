@@ -20,7 +20,7 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
         }[],
     }
 
-    const [searchedWord, setSearchedWord] = useState("hola");
+    const [searchedWord, setSearchedWord] = useState("hello");
     
     function makeSearch(){
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)

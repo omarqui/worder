@@ -22,8 +22,11 @@ type DefinitionsSectionProps = {
 
 export const DefinitionsSection = ({dictionary} : DefinitionsSectionProps ) => {
     return (
-        <div>
-            <h3>Definitions for "{dictionary.word}"</h3>
+        <div >
+            <div className="definitionSectionTitle">
+                <h3 >Definitions for "{dictionary.word}"</h3>
+                <button className="bntSave" >Save2</button>
+            </div>
             {
                 dictionary.meanings.map(meaning => (
                     <MeaningCard

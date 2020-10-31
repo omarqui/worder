@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -38,8 +38,8 @@
 }
 
 .MeaningSearch {
-  border: 1px solid #282c34;
-  text-align: start;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .enfasis {
@@ -60,4 +60,28 @@
 .example {
   font-weight: 400;
   font-style: italic;
+}
+
+.definitionSectionTitle {
+  display: flex;
+  align-content: center;
+  /* justify-content: space-between; */
+}
+
+.bntSave {
+  margin-left: 1rem;
+}
+
+.definitionLayout {
+  display: flex;
+}
+
+.definitionPosition {
+  font-size: 32px;
+  align-self: center;
+  margin-right: 1rem;
+}
+
+.title {
+  text-align: center;
 }
