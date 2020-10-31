@@ -1,11 +1,11 @@
 import React, { useState, FunctionComponent }  from 'react';
 import "./App.css";
 
-function capitalize(word:String){
-    return word[0].toUpperCase()+word.substr(1);
+interface IMeaningSearchProps {
+    setDictionaryDefinition: Function
 }
 
-const MeaningSearch:FunctionComponent = ()=>{
+const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
     interface IDictonaryData{
         word: string,
         phonetics: { 
@@ -20,14 +20,7 @@ const MeaningSearch:FunctionComponent = ()=>{
         }[],
     }
 
-    const [searchedWord, setSearchedWord] = useState("hola");   
-    const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
-        {
-           word: "",
-           meanings: [],
-           phonetics: []
-        },
-    );
+    const [searchedWord, setSearchedWord] = useState("hola");
     
     function makeSearch(){
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
@@ -45,7 +38,6 @@ const MeaningSearch:FunctionComponent = ()=>{
 
     return (
         <div>
-            <h2>Meaning Search</h2>
             <div className = "MeaningSearch">
                 <span>Word</span>
                 <input 
@@ -55,38 +47,6 @@ const MeaningSearch:FunctionComponent = ()=>{
                     onKeyDown={(e)=>{ 
                         if(e.key === "Enter") makeSearch(); 
                     }}/>
-                <div>
-                <h3>Definitions for "{dictionaryDefinition.word}"</h3>
-                {
-                    dictionaryDefinition.meanings.map(meaning=>(
-                        <div className="definitionWrapper card m-2" key={meaning.partOfSpeech}>
-                            <div className="card-body">
-                                <h5 className="card-title">{capitalize(meaning.partOfSpeech)}</h5>
-                                
-                                {meaning.definitions.map((def,position)=>(
-                                <div className="definition">
-                                    <div>
-                                        <span>{position+1}</span>
-                                        <span>
-                                            <div>
-                                                <span>{def.definition}</span>
-                                            </div>
-
-                                            <div>
-                                                <span className="enfasis">Example:</span>
-                                                <span className="example">"{def.example}"</span>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    
-                                </div>
-                                ))}
-                            </div>
-                        </div>
-
-                    ))
-                }
-                </div>
             </div>
         </div>
     )
