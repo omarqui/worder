@@ -38,7 +38,10 @@ function App() {
             <MeaningSearch setDictionaryDefinition={(dictionary: IDictonaryData) => {
               setDictionaryDefinition(dictionary)
             }} />
-            <DefinitionsSection dictionary={dictionaryDefinition} />
+            {
+              dictionaryDefinition.word && 
+              <DefinitionsSection dictionary={dictionaryDefinition} />
+            }
           </div>
           {/* <div class="col-sm">
             One of three columns
