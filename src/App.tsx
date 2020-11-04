@@ -1,8 +1,10 @@
 import logo from './logo.svg';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import MeaningSearch from "./components/MeaningSearch";
 import { DefinitionsSection } from "./components/DefinitionsSection";
+import * as db from './dataServices/SearchHistory';
+
 function App() {
   interface IDictonaryData {
     word: string,
@@ -26,6 +28,17 @@ function App() {
     },
   );
 
+  const setDictionaryDefinitionProxy = (dictionary:IDictonaryData) => {
+    db.saveSearchHistory(dictionary);
+    setDictionaryDefinition(dictionary)
+  };
+
+  useEffect(()=>{
+    db.getSearchHistory().then(snapshot=>{
+      snapshot.forEach(doc=>console.log(doc.data()));
+    })
+  })
+
   return (
     <div className="App">
       <div className="container">
@@ -36,7 +49,7 @@ function App() {
           <div className="col-sm">
             <h2 className="title">Meaning Search</h2>
             <MeaningSearch setDictionaryDefinition={(dictionary: IDictonaryData) => {
-              setDictionaryDefinition(dictionary)
+              setDictionaryDefinitionProxy(dictionary)
             }} />
             {
               dictionaryDefinition.word && 

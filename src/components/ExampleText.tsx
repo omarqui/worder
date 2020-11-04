@@ -1,5 +1,5 @@
 import React, { useState, FunctionComponent }  from 'react';
-import "./App.css";
+import "../App.css";
 
 type ExampleTextProps = {
     value: string
