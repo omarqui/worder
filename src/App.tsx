@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
-import MeaningSearch from "./MeaningSearch";
-import { DefinitionsSection } from "./DefinitionsSection";
+import MeaningSearch from "./components/MeaningSearch";
+import { DefinitionsSection } from "./components/DefinitionsSection";
 function App() {
   interface IDictonaryData {
     word: string,
