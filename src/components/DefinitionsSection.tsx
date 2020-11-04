@@ -22,7 +22,6 @@ type DefinitionsSectionProps = {
 }
 
 const saveWordClick = (word:IDictonaryData) => {
-
     saveWord(word).then(()=>{
         alert("Guardado")
     });

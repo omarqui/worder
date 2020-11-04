@@ -4,6 +4,7 @@ import './App.css';
 import MeaningSearch from "./components/MeaningSearch";
 import { DefinitionsSection } from "./components/DefinitionsSection";
 import * as db from './dataServices/SearchHistory';
+import SearchHistory from "./components/SearchHistory";
 
 function App() {
   interface IDictonaryData {
@@ -52,8 +53,10 @@ function App() {
               setDictionaryDefinitionProxy(dictionary)
             }} />
             {
-              dictionaryDefinition.word && 
-              <DefinitionsSection dictionary={dictionaryDefinition} />
+              (dictionaryDefinition.word &&
+                <DefinitionsSection 
+                dictionary={dictionaryDefinition} />
+              ) || <SearchHistory />
             }
           </div>
           {/* <div class="col-sm">
