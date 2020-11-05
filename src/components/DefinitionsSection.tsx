@@ -2,20 +2,8 @@ import React, { useState, FunctionComponent } from 'react';
 import "../App.css";
 import { saveWord } from '../dataServices/WordSaved';
 import { MeaningCard } from "./MeaningCard";
+import { IDictonaryData } from "../types";
 
-type IDictonaryData = {
-    word: string,
-    phonetics: {
-        text: string,
-        audio: string
-    }[],
-    meanings: {
-        partOfSpeech: string,
-        definitions: {
-            definition: string, example: string
-        }[],
-    }[],
-}
 
 type DefinitionsSectionProps = {
     dictionary: IDictonaryData

@@ -1,25 +1,12 @@
 import db from '../config/firebase';
+import { IDictonaryData } from "../types";
 
 const COLLECTION_NAME = 'searchHistory';
+  
+export const getSearchHistory = ()=>{
+  return db.collection(COLLECTION_NAME).get();
+}
 
-interface IDictonaryData {
-    word: string,
-    phonetics: {
-      text: string,
-      audio: string
-    }[],
-    meanings: {
-      partOfSpeech: string,
-      definitions: {
-        definition: string, example: string
-      }[],
-    }[],
-  }
-  
-  export const getSearchHistory = ()=>{
-    return db.collection(COLLECTION_NAME).get();
-  }
-  
-  export const saveSearchHistory = (word:IDictonaryData)=>{
-    return db.collection(COLLECTION_NAME).add(word);
-  }
+export const saveSearchHistory = (word:IDictonaryData)=>{
+  return db.collection(COLLECTION_NAME).add(word);
+}

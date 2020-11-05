@@ -1,25 +1,12 @@
 import React, { useState, FunctionComponent }  from 'react';
 import "../App.css";
+import { IDictonaryData } from "../types";
 
 interface IMeaningSearchProps {
     setDictionaryDefinition: Function
 }
 
 const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
-    interface IDictonaryData{
-        word: string,
-        phonetics: { 
-            text: string, 
-            audio: string
-        }[],
-        meanings: {
-            partOfSpeech: string,
-            definitions: { 
-                definition: string, example: string
-            }[],
-        }[],
-    }
-
     const [searchedWord, setSearchedWord] = useState("hello");
     
     function makeSearch(){

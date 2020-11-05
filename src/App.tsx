@@ -5,22 +5,9 @@ import MeaningSearch from "./components/MeaningSearch";
 import { DefinitionsSection } from "./components/DefinitionsSection";
 import * as db from './dataServices/SearchHistory';
 import SearchHistory from "./components/SearchHistory";
+import { IDictonaryData } from "./types";
 
 function App() {
-  interface IDictonaryData {
-    word: string,
-    phonetics: {
-      text: string,
-      audio: string
-    }[],
-    meanings: {
-      partOfSpeech: string,
-      definitions: {
-        definition: string, example: string
-      }[],
-    }[],
-  }
-
   const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
     {
       word: "",
@@ -32,7 +19,7 @@ function App() {
   const setDictionaryDefinitionProxy = (dictionary:IDictonaryData) => {
     if (dictionary.word)
       db.saveSearchHistory(dictionary);
-      
+
     setDictionaryDefinition(dictionary)
   };
 
