@@ -30,15 +30,11 @@ function App() {
   );
 
   const setDictionaryDefinitionProxy = (dictionary:IDictonaryData) => {
-    db.saveSearchHistory(dictionary);
+    if (dictionary.word)
+      db.saveSearchHistory(dictionary);
+      
     setDictionaryDefinition(dictionary)
   };
-
-  useEffect(()=>{
-    db.getSearchHistory().then(snapshot=>{
-      snapshot.forEach(doc=>console.log(doc.data()));
-    })
-  })
 
   return (
     <div className="App">
@@ -56,7 +52,7 @@ function App() {
               (dictionaryDefinition.word &&
                 <DefinitionsSection 
                 dictionary={dictionaryDefinition} />
-              ) || <SearchHistory />
+              ) || <SearchHistory setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
             }
           </div>
           {/* <div class="col-sm">

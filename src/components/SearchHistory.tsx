@@ -16,18 +16,42 @@ interface IDictonaryData {
     }[],
   }
 
-const SearchHistory = ()=>{
+interface ISearchHistoryProps {
+  setDictionaryDefinition: Function
+}
+
+const SearchHistory = ({setDictionaryDefinition}:ISearchHistoryProps)=>{
     const [ history, setHistory ] = useState<IDictonaryData[]>();
+
     useEffect(()=>{
         db.getSearchHistory()
         .then(snapshot=>{
-            setHistory(snapshot.docs.map(d=>d.data));
+            setHistory(snapshot.docs.map(d=>{
+              const { meanings, phonetics, word } = d.data();
+
+              return {
+                meanings,
+                phonetics,
+                word
+              }
+
+            }));
         })
-    })
+    },[])
 
     return (
         <div>
             SearchHistory
+            {
+              history?.map((h,position)=>{
+                if (!h.word) return;
+
+                return (
+                  <div onClick={()=>setDictionaryDefinition(h)}>
+                    {position+1}-{h.word}
+                  </div>
+                )
+            })}
         </div>
     );
 }
