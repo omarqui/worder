@@ -29,11 +29,19 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
                 <span>Word</span>
                 <input 
                     type="text" 
+                    className="search"
                     value={searchedWord} 
                     onChange={(e)=>{setSearchedWord(e.target.value)}}
                     onKeyDown={(e)=>{ 
                         if(e.key === "Enter") makeSearch(); 
                     }}/>
+
+                {searchedWord && <button 
+                    className="clearBotton" 
+                    onClick={()=>{
+                        setSearchedWord("");
+                        makeSearch();
+                    }}>Clear</button>}
             </div>
         </div>
     )
