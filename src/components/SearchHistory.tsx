@@ -47,7 +47,9 @@ const SearchHistory = ({setDictionaryDefinition}:ISearchHistoryProps)=>{
                 if (!h.word) return;
 
                 return (
-                  <div onClick={()=>setDictionaryDefinition(h)}>
+                  <div 
+                    className="historyCard" 
+                    onClick={()=>setDictionaryDefinition(h)}>
                     {position+1}-{h.word}
                   </div>
                 )
