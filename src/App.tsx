@@ -4,8 +4,9 @@ import './App.css';
 import MeaningSearch from "./components/MeaningSearch";
 import { DefinitionsSection } from "./components/DefinitionsSection";
 import * as db from './dataServices/SearchHistory';
-import SearchHistory from "./components/SearchHistory";
+import HistoryPanel from "./components/HistoryPanel";
 import { IDictonaryData } from "./types";
+import SavedWordPanel from './components/SavedWordPanel';
 
 function App() {
   const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
@@ -39,12 +40,21 @@ function App() {
               (dictionaryDefinition.word &&
                 <DefinitionsSection 
                 dictionary={dictionaryDefinition} />
-              ) || <SearchHistory setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+              )
             }
           </div>
-          {/* <div class="col-sm">
-            One of three columns
-          </div> */}
+        </div>
+        <div className="row">
+          <div className="col-sm">
+            {!dictionaryDefinition.word &&
+              <HistoryPanel setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+            }
+          </div>
+          <div className="col-sm">
+            {!dictionaryDefinition.word &&
+              <SavedWordPanel setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+            }
+          </div>
         </div>
       </div>
 
