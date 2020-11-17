@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import '../App.css';
-import * as db from '../dataServices/SearchHistory';
-import { IDictonaryData } from "../types";
-import PanelBase from "./PanelBase";
+import '../../App.css';
+import * as db from '../../dataServices/SearchHistory';
+import { IDictonaryData } from "../../types";
+import PanelBase from "../shared/PanelBase";
 
 interface IHistoryPanel {
   setDictionaryDefinition: Function

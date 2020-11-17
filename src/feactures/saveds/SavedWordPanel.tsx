@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import '../App.css';
-import * as db from '../dataServices/WordSaved';
-import { IDictonaryData } from "../types";
-import PanelBase from "./PanelBase";
+import '../../App.css';
+import * as db from '../../dataServices/WordSaved';
+import { IDictonaryData } from "../../types";
+import PanelBase from "../shared/PanelBase";
 
 interface ISavedWordPanel {
   setDictionaryDefinition: Function

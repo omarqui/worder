@@ -1,9 +1,9 @@
 import React, { useState, FunctionComponent } from 'react';
-import "../App.css";
+import "../../App.css";
 
 import { ExampleText } from "./ExampleText";
 import { DefinitionText } from "./DefinitionText";
-import { IMeaning } from "../types";
+import { IMeaning } from "../../types";
 
 function capitalize(word:String){
     return word[0].toUpperCase()+word.substr(1);

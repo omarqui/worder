@@ -1,6 +1,6 @@
 import React, { useState, FunctionComponent }  from 'react';
-import "../App.css";
-import { IDictonaryData } from "../types";
+import "../../App.css";
+import { IDictonaryData } from "../../types";
 
 interface IMeaningSearchProps {
     setDictionaryDefinition: Function

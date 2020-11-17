@@ -1,6 +1,6 @@
 import React from "react";
-import '../App.css';
-import { IDictonaryData } from "../types";
+import '../../App.css';
+import { IDictonaryData } from "../../types";
 
 interface IPanelBase {
   setDictionaryDefinition: Function,

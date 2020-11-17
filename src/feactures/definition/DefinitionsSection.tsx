@@ -1,8 +1,8 @@
 import React, { useState, FunctionComponent } from 'react';
-import "../App.css";
-import { saveWord } from '../dataServices/WordSaved';
+import "../../App.css";
+import { saveWord } from '../../dataServices/WordSaved';
 import { MeaningCard } from "./MeaningCard";
-import { IDictonaryData } from "../types";
+import { IDictonaryData } from "../../types";
 
 
 type DefinitionsSectionProps = {

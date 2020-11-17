@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import MeaningSearch from "./components/MeaningSearch";
-import { DefinitionsSection } from "./components/DefinitionsSection";
+import MeaningSearch from "./feactures/search/MeaningSearch";
+import { DefinitionsSection } from "./feactures/definition/DefinitionsSection";
 import * as db from './dataServices/SearchHistory';
-import HistoryPanel from "./components/HistoryPanel";
+import HistoryPanel from "./feactures/history/HistoryPanel";
 import { IDictonaryData } from "./types";
-import SavedWordPanel from './components/SavedWordPanel';
+import SavedWordPanel from './feactures/saveds/SavedWordPanel';
 
 function App() {
   const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
