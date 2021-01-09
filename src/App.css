@@ -110,12 +110,11 @@
 
 
 .tabBotton {
-	margin-right: 0.2rem;	
+  margin-right: 0.2rem;	
   padding: 1rem;
   border-radius: 5px 5px 0 0;
   border-left: 1px solid white;
   border-right: 1px solid white;
-  
 }
 
 .tabBottonUnselected{
@@ -141,7 +140,6 @@
 }
 
 .mainContainer {
-  width: 40%;
   margin: auto;
 }
 
