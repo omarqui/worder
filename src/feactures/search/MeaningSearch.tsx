@@ -26,22 +26,28 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
     return (
         <div>
             <div className = "MeaningSearch">
-                <span>Word</span>
+                <span className="searchInputTitle">
+                    Word
+                </span>
                 <input 
                     type="text" 
-                    className="search"
+                    className="searchInput"
                     value={searchedWord} 
                     onChange={(e)=>{setSearchedWord(e.target.value)}}
                     onKeyDown={(e)=>{ 
                         if(e.key === "Enter") makeSearch(); 
                     }}/>
 
-                {searchedWord && <button 
-                    className="clearBotton" 
-                    onClick={()=>{
-                        setSearchedWord("");
-                        makeSearch();
-                    }}>Clear</button>}
+                {searchedWord && 
+                    <button 
+                        className="clearBotton btn btn-outline-danger" 
+                        onClick={()=>{
+                            setSearchedWord("");
+                            makeSearch();
+                        }}>
+                        <i className="bi bi-x-circle-fill"></i>
+                    </button>
+                }
             </div>
         </div>
     )

@@ -20,7 +20,9 @@ export const DefinitionsSection = ({dictionary} : DefinitionsSectionProps ) => {
         <div >
             <div className="definitionSectionTitle">
                 <h3 >Definitions for "{dictionary.word}"</h3>
-                <button className="bntSave" onClick={()=>saveWordClick(dictionary)}>Save2</button>
+                <button className="bntSave btn btn-outline-warning" onClick={()=>saveWordClick(dictionary)}>
+                    <i className="bi bi-star-fill"></i>
+                </button>
             </div>
             {
                 dictionary.meanings.map(meaning => (
