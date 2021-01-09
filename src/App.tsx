@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App container">
-      <div className="mainContainer">
+      <div className="mainContainer col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
         <div className="row">
           <div className="col-sm">
             <h2 
