@@ -13,7 +13,7 @@ const PanelBase = ({setDictionaryDefinition, words}:IPanelBase)=>{
             <div>
             {
               words.map((h,position)=>{
-                if (!h.word) return;
+                // if (!h.word) return;
 
                 return (
                   <div 

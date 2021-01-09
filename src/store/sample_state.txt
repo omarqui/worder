@@ -1,0 +1,20 @@
+state = {
+    history: [{
+        word: ""
+        phonetics: [],
+        meanings: [],
+    },],
+    saveds: [{
+        word: "",
+        phonetics: [],
+        meanings: [],
+    },],
+    currentSearch: {
+        searchText: ""
+        searchResult: {
+            word: "",
+            phonetics: [],
+            meanings: [],
+        },
+    }
+}
