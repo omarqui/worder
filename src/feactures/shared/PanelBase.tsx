@@ -4,16 +4,12 @@ import { IDictonaryData } from "../../types";
 
 interface IPanelBase {
   setDictionaryDefinition: Function,
-  title: String,
   words: IDictonaryData[]
 }
 
-const PanelBase = ({setDictionaryDefinition, title, words}:IPanelBase)=>{
+const PanelBase = ({setDictionaryDefinition, words}:IPanelBase)=>{
     return (
         <div>
-            <h4>
-              {title}
-            </h4>
             <div>
             {
               words.map((h,position)=>{

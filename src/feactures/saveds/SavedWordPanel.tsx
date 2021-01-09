@@ -29,7 +29,6 @@ const SavedWordPanel = ({setDictionaryDefinition}:ISavedWordPanel)=>{
 
     return (
         <PanelBase
-          title="Saveds"
           words={saveds}
           setDictionaryDefinition={setDictionaryDefinition}/>
     );

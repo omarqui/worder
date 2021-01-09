@@ -29,7 +29,6 @@ const HistoryPanel = ({setDictionaryDefinition}:IHistoryPanel)=>{
 
     return (
         <PanelBase
-          title="History"
           words={history}
           setDictionaryDefinition={setDictionaryDefinition}/>
     );

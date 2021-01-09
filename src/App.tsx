@@ -4,17 +4,18 @@ import './App.css';
 import MeaningSearch from "./feactures/search/MeaningSearch";
 import { DefinitionsSection } from "./feactures/definition/DefinitionsSection";
 import * as db from './dataServices/SearchHistory';
-import HistoryPanel from "./feactures/history/HistoryPanel";
 import { IDictonaryData } from "./types";
-import SavedWordPanel from './feactures/saveds/SavedWordPanel';
+import { MainTab } from "./feactures/mainTab/MainTab";
 
 function App() {
+  const defaultDictionaryDefinition = {
+    word: "",
+    meanings: [],
+    phonetics: []
+  };
+
   const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
-    {
-      word: "",
-      meanings: [],
-      phonetics: []
-    },
+    defaultDictionaryDefinition,
   );
 
   const setDictionaryDefinitionProxy = (dictionary:IDictonaryData) => {
@@ -25,14 +26,17 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="container">
+    <div className="App container">
+      <div className="mainContainer">
         <div className="row">
-          {/* <div class="col-sm">
-            One of three columns
-          </div> */}
           <div className="col-sm">
-            <h2 className="title">Meaning Search</h2>
+            <h2 
+              className="title mt-5 mb-4"
+              onClick={()=>{
+                setDictionaryDefinition(defaultDictionaryDefinition)
+              }}>
+                Meaning Search
+            </h2>
             <MeaningSearch setDictionaryDefinition={(dictionary: IDictonaryData) => {
               setDictionaryDefinitionProxy(dictionary)
             }} />
@@ -44,18 +48,10 @@ function App() {
             }
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm">
-            {!dictionaryDefinition.word &&
-              <HistoryPanel setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
-            }
-          </div>
-          <div className="col-sm">
-            {!dictionaryDefinition.word &&
-              <SavedWordPanel setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
-            }
-          </div>
-        </div>
+        
+        {!dictionaryDefinition.word &&
+          <MainTab setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+        }
       </div>
 
     </div>

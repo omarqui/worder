@@ -40,6 +40,7 @@
 .MeaningSearch {
   text-align: center;
   margin-bottom: 1rem;
+  display: flex;
 }
 
 .enfasis {
@@ -47,13 +48,14 @@
   margin-right: 1em;
 }
 
-.definitionWrapper {
-  margin-bottom: 0 0 2rem 0.5rem;
+.definition {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
-.definition {
-  margin-left: 2rem;
-  margin-bottom: 2rem;
+.lastDefinition {
+  margin-left: 1rem;
+  margin-bottom: 0rem;
 }
 
 .example {
@@ -64,7 +66,7 @@
 .definitionSectionTitle {
   display: flex;
   align-content: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 .bntSave {
@@ -86,16 +88,74 @@
 }
 
 .clearBotton {
-  
+  margin-left: 0.5rem;
 }
 
-.search {
-  margin: 0 1rem;
+.searchInput {
+  margin-left: 0.5rem;
+  flex-grow: 1;
+}
+
+.searchInputTitle {
+  align-self: center;
 }
 
 .panelItem {
   padding: 1rem;
   margin: 0 0 1rem 0;
+  border: 1px solid lightgray;
   border-radius: 3px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.tabBotton {
+	margin-right: 0.2rem;	
+  padding: 1rem;
+  border-radius: 5px 5px 0 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  
+}
+
+.tabBottonUnselected{
+  background-color: whitesmoke;
+  border: 1px solid lightgray;
+}
+
+.tabBottonUnselected:hover {
+  background-color: aliceblue;
+  border: 1px solid lightgray;
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.tabBottonSelected {
+	border: 1px solid lightgray;
+	border-bottom: 2px solid white;
+}
+
+.tabWrapper {
+	border-bottom: 1px solid lightgrey;
+	margin: 1rem 0;
+	padding-bottom: 0.9rem;
+}
+
+.mainContainer {
+  width: 40%;
+  margin: auto;
+}
+
+.definitionWrapper {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.lastDefinitionWrapper {
+  border-bottom: 0px;
+  padding-bottom: 0;
+}
+
+.panelItem:hover {
+	background-color: aliceblue;
 }
