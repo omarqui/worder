@@ -1,4 +1,4 @@
-import { CHANGE_TAB_SELECTED, IMainTabState, IMainTabActions } from "./MainTab.types";
+import { CHANGE_TAB_SELECTED, IMainTabState, IMainTabActions } from "./types";
 
 const initialState: IMainTabState = {
     tabSelected : 2

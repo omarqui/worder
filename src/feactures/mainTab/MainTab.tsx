@@ -4,7 +4,7 @@ import { IDictonaryData } from '../../types';
 import SavedWordPanel from '../saveds/SavedWordPanel';
 import { useSelector, useDispatch } from "react-redux";
 import { IRootState } from "../../redux/store";
-import { changeTabSelected } from "./MainTab.action";
+import { changeTabSelected } from "./actions";
 
 interface IMainTab {
     setDictionaryDefinition: Function
