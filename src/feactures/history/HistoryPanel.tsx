@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import '../../App.css';
-import * as db from '../../dataServices/SearchHistory';
-import { IDictonaryData } from "../../types";
 import PanelBase from "../shared/PanelBase";
+import { fetchHistory } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "../../redux/store";
 
 const HistoryPanel = ()=>{
-    const [ history, setHistory ] = useState<IDictonaryData[]>([]);
-
+    const dispatch = useDispatch();
+    const history = useSelector((state:IRootState)=>state.history.logs)
+    
     useEffect(()=>{
-        db.getSearchHistory()
-        .then(snapshot=>{
-            setHistory(snapshot.docs.map(d=>{
-              const { meanings, phonetics, word } = d.data();
-
-              return {
-                meanings,
-                phonetics,
-                word
-              }
-
-            }));
-        })
+      dispatch(fetchHistory());
     },[])
 
     return (
