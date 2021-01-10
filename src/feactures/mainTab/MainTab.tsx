@@ -1,6 +1,5 @@
 import React from 'react';
 import HistoryPanel from '../history/HistoryPanel';
-import { IDictonaryData } from '../../types';
 import SavedWordPanel from '../saveds/SavedWordPanel';
 import { useSelector, useDispatch } from "react-redux";
 import { IRootState } from "../../redux/store";

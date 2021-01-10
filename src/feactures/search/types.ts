@@ -1,5 +1,3 @@
-import { type } from "os";
-import { Interface } from "readline";
 import { IDictonaryData } from "../../types";
 
 export const SET_SEARCHED_WORD = "SET_SEARCHED_WORD";
