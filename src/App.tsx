@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import MeaningSearch from "./feactures/search/MeaningSearch";
 import { DefinitionsSection } from "./feactures/definition/DefinitionsSection";

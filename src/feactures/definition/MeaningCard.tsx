@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from 'react';
+import React from 'react';
 import "../../App.css";
 
 import { ExampleText } from "./ExampleText";
@@ -20,7 +20,7 @@ export const MeaningCard = ({ meaning }: MeaningProps) => {
                 <h5 className="card-title">{capitalize(meaning.partOfSpeech)}</h5>
 
                 {meaning.definitions.map((def, position) => {
-                    const isLastDefinition = (meaning.definitions.length == position + 1);
+                    const isLastDefinition = (meaning.definitions.length === position + 1);
                     
                     return (
                         <div className={

@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent }  from 'react';
+import React, { useState }  from 'react';
 import "../../App.css";
 import { IDictonaryData } from "../../types";
 

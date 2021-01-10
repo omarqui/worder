@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent }  from 'react';
+import React from 'react';
 import "../../App.css";
 
 type definitionTextProps = {

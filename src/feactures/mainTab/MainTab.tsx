@@ -14,25 +14,25 @@ export const MainTab = ({setDictionaryDefinition}:IMainTab)=>{
         <div>
             <div className="tabWrapper">
                 <span 
-                    className={"tabBotton h5 " + (tabSelectd == 1 ? "tabBottonSelected" : "tabBottonUnselected")}
+                    className={"tabBotton h5 " + (tabSelectd === 1 ? "tabBottonSelected" : "tabBottonUnselected")}
                     onClick={()=>{setTabSelect(1)}}>
                     History
                 </span>
                 <span 
-                    className={"tabBotton h5 " + (tabSelectd == 2 ? "tabBottonSelected" : "tabBottonUnselected")}
+                    className={"tabBotton h5 " + (tabSelectd === 2 ? "tabBottonSelected" : "tabBottonUnselected")}
                     onClick={()=>{setTabSelect(2)}}>
                     Saved
                 </span>
             </div>
             <div className="row">
-                {tabSelectd == 1 &&
+                {tabSelectd === 1 &&
                     <div className="col-sm">
                         <HistoryPanel 
                             setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
                     </div>
                 }
                 
-                {tabSelectd == 2 &&
+                {tabSelectd === 2 &&
                     <div className="col-sm">
                         <SavedWordPanel 
                             setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
