@@ -1,14 +1,25 @@
-import React, { useState, FunctionComponent }  from 'react';
+import React from 'react';
 import "../../App.css";
 import { IDictonaryData } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "../../redux/store";
+import * as actions from "./actions";
 
 interface IMeaningSearchProps {
     setDictionaryDefinition: Function
 }
 
 const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
-    const [searchedWord, setSearchedWord] = useState("hello");
-    
+    const searchedWord = useSelector((state:IRootState)=>
+        state.search.searchedWord
+    );
+
+    const dispatch = useDispatch();
+
+    const setSearchedWord = (word: string)=>{
+        dispatch(actions.setSearchedWord(word));
+    }
+
     function makeSearch(){
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
             .then(res=> res.json())
