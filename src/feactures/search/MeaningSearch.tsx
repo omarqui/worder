@@ -5,11 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
 import * as actions from "./actions";
 
-interface IMeaningSearchProps {
-    setDictionaryDefinition: Function
-}
-
-const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
+const MeaningSearch = ()=>{
     const searchedWord = useSelector((state:IRootState)=>
         state.search.searchedWord
     );
@@ -20,18 +16,8 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
         dispatch(actions.setSearchedWord(word));
     }
 
-    function makeSearch(){
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchedWord}`)
-            .then(res=> res.json())
-            .then((data:IDictonaryData[])=>{
-                const dictionaryData: IDictonaryData = data.length > 0 ? data[0] : {
-                    meanings: [],
-                    phonetics: [],
-                    word: ""
-                };
-                
-                setDictionaryDefinition(dictionaryData);
-            });
+    function dispatchMakeSearch(word:string){
+        dispatch(actions.makeSearchThunk(word));
     }
 
     return (
@@ -46,7 +32,7 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
                     value={searchedWord} 
                     onChange={(e)=>{setSearchedWord(e.target.value)}}
                     onKeyDown={(e)=>{ 
-                        if(e.key === "Enter") makeSearch(); 
+                        if(e.key === "Enter") dispatchMakeSearch(searchedWord); 
                     }}/>
 
                 {searchedWord && 
@@ -54,7 +40,7 @@ const MeaningSearch = ({setDictionaryDefinition} : IMeaningSearchProps)=>{
                         className="clearBotton btn btn-outline-danger" 
                         onClick={()=>{
                             setSearchedWord("");
-                            makeSearch();
+                            dispatchMakeSearch(searchedWord);
                         }}>
                         <i className="bi bi-x-circle-fill"></i>
                     </button>

@@ -1,31 +1,29 @@
 import React from "react";
 import '../../App.css';
 import { IDictonaryData } from "../../types";
-
+import { setCurrentDefinition } from "../search/actions";
+import { useDispatch } from "react-redux";
 interface IPanelBase {
-  setDictionaryDefinition: Function,
   words: IDictonaryData[]
 }
 
-const PanelBase = ({setDictionaryDefinition, words}:IPanelBase)=>{
-    return (
-        <div>
-            <div>
-            {
-              words.map((h,position)=>{
-                // if (!h.word) return;
+const PanelBase = ({ words }: IPanelBase) => {
+  const dispatch = useDispatch();
 
-                return (
-                  <div 
-                    className="panelItem" 
-                    onClick={()=>setDictionaryDefinition(h)}>
-                    {position+1}. {h.word}
-                  </div>
-                )
-            })}
+  return (
+    <div>
+      <div>
+        {
+          words.map((definition, position) => (
+            <div
+              className="panelItem"
+              onClick={() => dispatch(setCurrentDefinition(definition))}>
+              {position + 1}. {definition.word}
             </div>
-        </div>
-    );
+          ))}
+      </div>
+    </div>
+  );
 }
 
 export default PanelBase;

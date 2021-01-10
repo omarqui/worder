@@ -1,9 +1,8 @@
-import React, { useState, FunctionComponent } from 'react';
+import React from 'react';
 import "../../App.css";
 import { saveWord } from '../../dataServices/WordSaved';
 import { MeaningCard } from "./MeaningCard";
 import { IDictonaryData } from "../../types";
-
 
 type DefinitionsSectionProps = {
     dictionary: IDictonaryData

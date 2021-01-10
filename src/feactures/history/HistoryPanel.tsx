@@ -4,11 +4,7 @@ import * as db from '../../dataServices/SearchHistory';
 import { IDictonaryData } from "../../types";
 import PanelBase from "../shared/PanelBase";
 
-interface IHistoryPanel {
-  setDictionaryDefinition: Function
-}
-
-const HistoryPanel = ({setDictionaryDefinition}:IHistoryPanel)=>{
+const HistoryPanel = ()=>{
     const [ history, setHistory ] = useState<IDictonaryData[]>([]);
 
     useEffect(()=>{
@@ -29,8 +25,7 @@ const HistoryPanel = ({setDictionaryDefinition}:IHistoryPanel)=>{
 
     return (
         <PanelBase
-          words={history}
-          setDictionaryDefinition={setDictionaryDefinition}/>
+          words={history} />
     );
 }
 

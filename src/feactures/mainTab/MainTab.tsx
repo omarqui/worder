@@ -6,11 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IRootState } from "../../redux/store";
 import { changeTabSelected } from "./actions";
 
-interface IMainTab {
-    setDictionaryDefinition: Function
-}
-
-export const MainTab = ({setDictionaryDefinition}:IMainTab)=>{
+export const MainTab = ()=>{
     const tabSelectd = useSelector((state:IRootState)=>state.mainTab.tabSelected)
     const dispatch = useDispatch();
     const setTabSelect = (newIndex:number) => dispatch(changeTabSelected(newIndex));
@@ -32,15 +28,13 @@ export const MainTab = ({setDictionaryDefinition}:IMainTab)=>{
             <div className="row">
                 {tabSelectd == 1 &&
                     <div className="col-sm">
-                        <HistoryPanel 
-                            setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+                        <HistoryPanel />
                     </div>
                 }
                 
                 {tabSelectd == 2 &&
                     <div className="col-sm">
-                        <SavedWordPanel 
-                            setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+                        <SavedWordPanel />
                     </div>
                 }
             </div>

@@ -4,11 +4,7 @@ import * as db from '../../dataServices/WordSaved';
 import { IDictonaryData } from "../../types";
 import PanelBase from "../shared/PanelBase";
 
-interface ISavedWordPanel {
-  setDictionaryDefinition: Function
-}
-
-const SavedWordPanel = ({setDictionaryDefinition}:ISavedWordPanel)=>{
+const SavedWordPanel = ()=>{
     const [ saveds, setSaveds ] = useState<IDictonaryData[]>([]);
 
     useEffect(()=>{
@@ -29,8 +25,7 @@ const SavedWordPanel = ({setDictionaryDefinition}:ISavedWordPanel)=>{
 
     return (
         <PanelBase
-          words={saveds}
-          setDictionaryDefinition={setDictionaryDefinition}/>
+          words={saveds} />
     );
 }
 

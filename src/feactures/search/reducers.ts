@@ -1,4 +1,4 @@
-import { 
+import {
     ISearchActions,
     ISearchState,
     SET_CURRENT_DEFINITION,
@@ -15,9 +15,9 @@ const initialState: ISearchState = {
 }
 
 export function SearchReducer(
-    state: ISearchState = initialState, 
+    state: ISearchState = initialState,
     action: ISearchActions
-): ISearchState{
+): ISearchState {
     switch (action.type) {
         case SET_SEARCHED_WORD:
             return {
