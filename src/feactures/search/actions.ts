@@ -1,7 +1,9 @@
 import { 
     ISearchActions, 
     SET_CURRENT_DEFINITION, 
-    SET_SEARCHED_WORD } from "./types";
+    SET_SEARCHED_WORD,
+    CLEAR_CURRENT_DEFINITION
+ } from "./types";
 import { IDictonaryData } from "../../types";
 import { AppThunk } from '../../redux/appThunk';
 import * as db from '../../dataServices/SearchHistory';
@@ -10,6 +12,12 @@ export function setCurrentDefinition (definition : IDictonaryData) : ISearchActi
     return {
         type: SET_CURRENT_DEFINITION,
         definition
+    }
+}
+
+export function clearCurrentDefinition (){
+    return {
+        type: CLEAR_CURRENT_DEFINITION
     }
 }
 

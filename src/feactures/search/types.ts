@@ -1,7 +1,10 @@
+import { type } from "os";
+import { Interface } from "readline";
 import { IDictonaryData } from "../../types";
 
 export const SET_SEARCHED_WORD = "SET_SEARCHED_WORD";
 export const SET_CURRENT_DEFINITION = "SET_CURRENT_DEFINITION";
+export const CLEAR_CURRENT_DEFINITION = "CLEAR_CURRENT_DEFINITION";
 
 export interface ISearchState {
     searchedWord: string,
@@ -18,4 +21,10 @@ interface ISetCurrentDefinition{
     definition: IDictonaryData
 }
 
-export type ISearchActions = ISetCurrentDefinition | ISetSearchWordAction;
+interface IClearCurrentDefinition{
+    type: typeof CLEAR_CURRENT_DEFINITION
+}
+
+export type ISearchActions = ISetCurrentDefinition | 
+                             ISetSearchWordAction | 
+                             IClearCurrentDefinition;

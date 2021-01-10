@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../App.css";
-import { IDictonaryData } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
 import * as actions from "./actions";
@@ -40,7 +39,6 @@ const MeaningSearch = ()=>{
                         className="clearBotton btn btn-outline-danger" 
                         onClick={()=>{
                             setSearchedWord("");
-                            dispatchMakeSearch(searchedWord);
                         }}>
                         <i className="bi bi-x-circle-fill"></i>
                     </button>
