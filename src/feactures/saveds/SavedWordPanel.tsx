@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import '../../App.css';
-import * as db from '../../dataServices/WordSaved';
-import { IDictonaryData } from "../../types";
 import PanelBase from "../shared/PanelBase";
+import { fetchSaved } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "../../redux/store";
 
-interface ISavedWordPanel {
-  setDictionaryDefinition: Function
-}
-
-const SavedWordPanel = ({setDictionaryDefinition}:ISavedWordPanel)=>{
-    const [ saveds, setSaveds ] = useState<IDictonaryData[]>([]);
+const SavedWordPanel = ()=>{
+    const saved = useSelector((state:IRootState)=>state.saved.savedList);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
-        db.getSavedWords()
-        .then(snapshot=>{
-            setSaveds(snapshot.docs.map(d=>{
-              const { meanings, phonetics, word } = d.data();
-
-              return {
-                meanings,
-                phonetics,
-                word
-              }
-
-            }));
-        })
+      dispatch(fetchSaved());
     },[])
 
     return (
-        <PanelBase
-          words={saveds}
-          setDictionaryDefinition={setDictionaryDefinition}/>
+        <PanelBase words={saved} />
     );
 }
 

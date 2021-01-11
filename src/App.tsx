@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import MeaningSearch from "./feactures/search/MeaningSearch";
 import { DefinitionsSection } from "./feactures/definition/DefinitionsSection";
-import * as db from './dataServices/SearchHistory';
-import { IDictonaryData } from "./types";
 import { MainTab } from "./feactures/mainTab/MainTab";
+import { useSelector, useDispatch} from "react-redux";
+import { IRootState } from "./redux/store";
+import { clearCurrentDefinition } from "./feactures/search/actions";
 
 function App() {
-  const defaultDictionaryDefinition = {
-    word: "",
-    meanings: [],
-    phonetics: []
-  };
-
-  const [dictionaryDefinition, setDictionaryDefinition] = useState<IDictonaryData>(
-    defaultDictionaryDefinition,
-  );
-
-  const setDictionaryDefinitionProxy = (dictionary:IDictonaryData) => {
-    if (dictionary.word)
-      db.saveSearchHistory(dictionary);
-
-    setDictionaryDefinition(dictionary)
-  };
+  let dictionaryDefinition = useSelector((state:IRootState)=>state.search.dictionaryDefinition);
+  
+  const dispatch = useDispatch();
 
   return (
     <div className="App container">
@@ -32,24 +20,22 @@ function App() {
             <h2 
               className="title mt-5 mb-4"
               onClick={()=>{
-                setDictionaryDefinition(defaultDictionaryDefinition)
+                dispatch(clearCurrentDefinition())
               }}>
                 Meaning Search
             </h2>
-            <MeaningSearch setDictionaryDefinition={(dictionary: IDictonaryData) => {
-              setDictionaryDefinitionProxy(dictionary)
-            }} />
+            <MeaningSearch />
             {
               (dictionaryDefinition.word &&
                 <DefinitionsSection 
-                dictionary={dictionaryDefinition} />
+                    dictionary={dictionaryDefinition} />
               )
             }
           </div>
         </div>
         
         {!dictionaryDefinition.word &&
-          <MainTab setDictionaryDefinition={(data:IDictonaryData)=>setDictionaryDefinition(data)} />
+          <MainTab />
         }
       </div>
 
