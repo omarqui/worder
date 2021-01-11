@@ -16,7 +16,7 @@ const MeaningSearch = ()=>{
     }
 
     function dispatchMakeSearch(word:string){
-        dispatch(actions.makeSearchThunk(word));
+        dispatch(actions.searchDefinition(word));
     }
 
     return (

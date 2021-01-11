@@ -3,7 +3,8 @@ import {
     ISearchState,
     SET_CURRENT_DEFINITION,
     SET_SEARCHED_WORD,
-    CLEAR_CURRENT_DEFINITION
+    CLEAR_CURRENT_DEFINITION,
+    TOGGLE_SAVED
 } from "./types";
 
 const initialState: ISearchState = {
@@ -35,6 +36,16 @@ export function SearchReducer(
             return {
                 ...state,
                 dictionaryDefinition: initialState.dictionaryDefinition
+            }
+        case TOGGLE_SAVED:
+            const isSaved = !(state.dictionaryDefinition.isSaved || false)
+            
+            return {
+                ...state,
+                dictionaryDefinition: {
+                    ...state.dictionaryDefinition,
+                    isSaved
+                }
             }
         default:
             return state;

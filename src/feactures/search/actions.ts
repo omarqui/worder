@@ -2,11 +2,13 @@ import {
     ISearchActions, 
     SET_CURRENT_DEFINITION, 
     SET_SEARCHED_WORD,
-    CLEAR_CURRENT_DEFINITION
+    CLEAR_CURRENT_DEFINITION,
+    TOGGLE_SAVED,
  } from "./types";
 import { IDictonaryData } from "../../types";
 import { AppThunk } from '../../redux/appThunk';
 import * as db from '../../dataServices/SearchHistory';
+import { saveWord } from '../../dataServices/WordSaved';
 
 export function setCurrentDefinition (definition : IDictonaryData) : ISearchActions {
     return {
@@ -28,7 +30,7 @@ export function setSearchedWord (word: string) : ISearchActions{
     }
 }
 
-export function makeSearchThunk(word: string) : AppThunk {
+export function searchDefinition(word: string) : AppThunk {
     return async (dispatch) =>{
         const dictionaryData = await makeSearch(word);
         
@@ -36,6 +38,27 @@ export function makeSearchThunk(word: string) : AppThunk {
             db.saveSearchHistory(dictionaryData);
 
         dispatch(setCurrentDefinition(dictionaryData));
+    }
+}
+
+function updateSaved(isSaved:boolean): ISearchActions{
+    return {
+        type: TOGGLE_SAVED,
+        isSaved
+    }
+}
+
+export function toggleSaved(): AppThunk{
+    return (dispach,getState)=>{
+        const currentWord = getState().search.dictionaryDefinition;
+        const isSaved = !(currentWord.isSaved || false);
+
+        dispach(updateSaved(isSaved));
+
+        const newCurrentWord = getState().search.dictionaryDefinition;
+        saveWord(newCurrentWord).then(()=>{
+            alert(isSaved ? "Guardado" : "Eliminado")
+        });
     }
 }
 
@@ -51,4 +74,5 @@ async function makeSearch(word: string): Promise<IDictonaryData>{
     
     return dictionaryData;
 }
+
 

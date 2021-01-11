@@ -11,12 +11,14 @@ export function fetchSaved(): AppThunk {
         db.getSavedWords()
             .then(snapshot => {
                 const savedList = snapshot.docs.map(d => {
-                    const { meanings, phonetics, word } = d.data();
+                    const { meanings, phonetics, word, isSaved} = d.data();
 
                     return {
+                        id: d.id,
                         meanings,
                         phonetics,
-                        word
+                        word,
+                        isSaved
                     }
 
                 });

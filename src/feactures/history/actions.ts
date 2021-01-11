@@ -14,6 +14,7 @@ export function fetchHistory(): AppThunk {
                     const { meanings, phonetics, word } = d.data();
 
                     return {
+                        id: d.id,
                         meanings,
                         phonetics,
                         word
