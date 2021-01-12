@@ -1,27 +1,27 @@
-import React, { useState, FunctionComponent } from 'react';
+import React from 'react';
 import "../../App.css";
-import { saveWord } from '../../dataServices/WordSaved';
 import { MeaningCard } from "./MeaningCard";
 import { IDictonaryData } from "../../types";
-
+import { toggleSaved } from "../search/actions";
+import { useDispatch } from "react-redux";
 
 type DefinitionsSectionProps = {
     dictionary: IDictonaryData
 }
 
-const saveWordClick = (word:IDictonaryData) => {
-    saveWord(word).then(()=>{
-        alert("Guardado")
-    });
-}
-
 export const DefinitionsSection = ({dictionary} : DefinitionsSectionProps ) => {
+    const dispatch = useDispatch();
+    const btnClass = `bntSave btn btn-${dictionary.isSaved ? "warning" : "outline-secundary"}`;
+    const iconClass = `bi bi-star-${dictionary.isSaved ? "fill" : "fill"}`;
+
     return (
         <div >
             <div className="definitionSectionTitle">
                 <h3 >Definitions for "{dictionary.word}"</h3>
-                <button className="bntSave btn btn-outline-warning" onClick={()=>saveWordClick(dictionary)}>
-                    <i className="bi bi-star-fill"></i>
+                <button 
+                    className={btnClass} 
+                    onClick={()=>dispatch(toggleSaved())}>
+                    <i className={iconClass}></i>
                 </button>
             </div>
             {
