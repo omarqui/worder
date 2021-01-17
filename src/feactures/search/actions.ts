@@ -8,7 +8,8 @@ import {
 import { IDictonaryData } from "../../types";
 import { AppThunk } from '../../redux/appThunk';
 import * as db from '../../dataServices/SearchHistory';
-import { saveWord } from '../../dataServices/WordSaved';
+import { saveWordToFavorite } from '../../dataServices/WordSaved';
+import { makeSearch } from "../../dataServices/SearchWord";
 
 export function setCurrentDefinition (definition : IDictonaryData) : ISearchActions {
     return {
@@ -35,7 +36,7 @@ export function searchDefinition(word: string) : AppThunk {
         const dictionaryData = await makeSearch(word);
         
         if (dictionaryData.word)
-            db.saveSearchHistory(dictionaryData);
+            db.saveWordToHistory(dictionaryData);
 
         dispatch(setCurrentDefinition(dictionaryData));
     }
@@ -56,23 +57,8 @@ export function toggleSaved(): AppThunk{
         dispach(updateSaved(isSaved));
 
         const newCurrentWord = getState().search.dictionaryDefinition;
-        saveWord(newCurrentWord).then(()=>{
+        saveWordToFavorite(newCurrentWord).then(()=>{
             alert(isSaved ? "Guardado" : "Eliminado")
         });
     }
 }
-
-async function makeSearch(word: string): Promise<IDictonaryData>{
-    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-    const data:IDictonaryData[] = await res.json();
-    
-    const dictionaryData: IDictonaryData = data.length > 0 ? data[0] : {
-        meanings: [],
-        phonetics: [],
-        word: ""
-    };
-    
-    return dictionaryData;
-}
-
-

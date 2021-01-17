@@ -8,7 +8,7 @@ export const getSavedWords = ()=>{
   return db.collection(COLLECTION_NAME).get();
 }
 
-export const saveWord = (word:IDictonaryData):Promise<any> =>{
+export const saveWordToFavorite = (word:IDictonaryData):Promise<any> =>{
   if (word.isSaved)
     return db.collection(COLLECTION_NAME).add(word);
   else
