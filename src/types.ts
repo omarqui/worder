@@ -6,7 +6,8 @@ export interface IDictonaryData {
         audio: string
     }[],
     meanings: IMeaning[],
-    isSaved?: boolean
+    isSaved?: boolean,
+    date?: Date
 }
 
 export interface IMeaning {

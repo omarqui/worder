@@ -3,10 +3,10 @@ import { IDictonaryData } from "../types";
 
 const COLLECTION_NAME = 'searchHistory';
   
-export const getSearchHistory = ()=>{
-  return db.collection(COLLECTION_NAME).get();
+export const getHistory = ()=>{
+  return db.collection(COLLECTION_NAME).orderBy("date","desc").get();
 }
 
-export const saveSearchHistory = (word:IDictonaryData)=>{
+export const saveWordToHistory = (word:IDictonaryData)=>{
   return db.collection(COLLECTION_NAME).add(word);
 }
