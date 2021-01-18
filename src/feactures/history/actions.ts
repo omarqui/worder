@@ -11,17 +11,17 @@ export function fetchHistory(): AppThunk {
         db.getHistory()
             .then(snapshot => {
                 const logs = snapshot.docs.map(d => {
-                    const { meanings, phonetics, word } = d.data();
-
+                    const { meanings, phonetics, word, date } = d.data();
+                    
                     return {
                         id: d.id,
                         meanings,
                         phonetics,
-                        word
+                        word,
+                        date: date.toDate()
                     }
-
                 });
-
+                
                 dispatch(setHistory(logs));
             });
     }
