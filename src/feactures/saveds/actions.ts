@@ -19,7 +19,7 @@ export function fetchSaved(): AppThunk {
                         phonetics,
                         word,
                         isSaved,
-                        date: date.toDate()
+                        date: date?.toDate()
                     }
 
                 });
