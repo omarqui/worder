@@ -7,27 +7,14 @@ import * as db from '../../dataServices/SearchHistory';
 import { AppThunk } from "../../redux/appThunk";
 
 export function fetchHistory(): AppThunk {
-    return dispatch => {
-        db.getHistory()
-            .then(snapshot => {
-                const logs = snapshot.docs.map(d => {
-                    const { meanings, phonetics, word, date } = d.data();
-                    
-                    return {
-                        id: d.id,
-                        meanings,
-                        phonetics,
-                        word,
-                        date: date.toDate()
-                    }
-                });
-                
-                dispatch(setHistory(logs));
-            });
+    return async (dispatch) => {
+        const logs = await db.getHistory();
+        
+        dispatch(setHistory(logs));
     }
 }
 
-function setHistory(logs: IDictonaryData[]): IHistoryActions {
+export function setHistory(logs: IDictonaryData[]): IHistoryActions {
     return {
         type: SET_HISTORY,
         logs: logs
