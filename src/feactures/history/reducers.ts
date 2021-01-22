@@ -4,7 +4,7 @@ import {
     IHistoryState 
 } from "./types";
 
-const initialState:IHistoryState = {
+export const initialState:IHistoryState = {
     logs: []
 }
 
