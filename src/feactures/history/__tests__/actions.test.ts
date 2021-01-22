@@ -1,8 +1,8 @@
-import { setHistory, fetchHistory } from "./actions";
-import { SET_HISTORY, IHistoryActions } from "./types";
-import { IDictonaryData } from "../../types";
-import * as db from '../../dataServices/SearchHistory';
-import mockStore from "../../redux/modkStore";
+import { setHistory, fetchHistory } from "../actions";
+import { SET_HISTORY, IHistoryActions } from "../types";
+import { IDictonaryData } from "../../../types";
+import * as db from '../../../dataServices/SearchHistory';
+import mockStore from "../../../redux/modkStore";
 
 const expectedHistory: Array<IDictonaryData> = [{ meanings: [], phonetics: [], word: "hola" }];
 

@@ -1,7 +1,7 @@
-import { HistoryReducer, initialState } from "./reducers";
-import { setHistory } from "./actions";
-import { IHistoryActions } from "./types";
-import { IDictonaryData } from "../../types";
+import { HistoryReducer, initialState } from "../reducers";
+import { setHistory } from "../actions";
+import { IHistoryActions } from "../types";
+import { IDictonaryData } from "../../../types";
 
 describe("history`s reducers", () => {
     it("should return the initial state", () => {
