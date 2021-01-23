@@ -10,22 +10,21 @@ interface IPanelBase {
 
 const PanelBase = ({ words }: IPanelBase) => {
   const dispatch = useDispatch();
-  
+
   return (
     <div>
-      <div>
-        {
-          words.map((definition, position) => (
-            <div
-              className="panelItem"
-              onClick={() => dispatch(setCurrentDefinition(definition))}>
-              {position + 1}. {definition.word}
-              <div>
-                {moment(definition.date).format("YYYY-MM-DD hh:mm A")}
-              </div>
+      {
+        words.map((definition, position) => (
+          <div
+            className="panelItem"
+            onClick={() => dispatch(setCurrentDefinition(definition))}
+            key={position}>
+            {position + 1}. {definition.word}
+            <div>
+              {moment(definition.date).format("YYYY-MM-DD hh:mm A")}
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 }
