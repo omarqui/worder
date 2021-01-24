@@ -1,7 +1,7 @@
 import { IDictonaryData } from "../types";
-
+import { makeUrlSearchWord } from "../utils/makeUrls";
 export async function makeSearch(word: string): Promise<IDictonaryData> {
-    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    const res = await fetch(makeUrlSearchWord(word));
     const data: IDictonaryData[] = await res.json();
     
     if (data?.length == 0)
