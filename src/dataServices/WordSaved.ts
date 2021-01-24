@@ -7,24 +7,33 @@ export const getSavedWords = async (): Promise<Array<IDictonaryData>> => {
   const snapshot = await db.collection(COLLECTION_NAME).get();
 
   const savedList = snapshot.docs.map(d => {
-    const { meanings, phonetics, word, isSaved, date } = d.data();
+    const { meanings, phonetics, word, date } = d.data();
 
     return <IDictonaryData>{
       id: d.id,
       meanings,
       phonetics,
       word,
-      isSaved,
+      isSaved: true,
       date: date?.toDate()
     }
 
   });
+  console.log(savedList);
+  
   return savedList;
 }
 
-export const saveWordToFavorite = (word: IDictonaryData): Promise<any> => {
-  if (word.isSaved)
-    return db.collection(COLLECTION_NAME).add(word);
-  else
-    return db.collection(COLLECTION_NAME).doc(word.id).delete();
+export const saveWordToFavorite = async (word: IDictonaryData): Promise<any> => {
+  console.log(word);
+  
+  if (word?.isSaved || false)
+    await db.collection(COLLECTION_NAME).doc(word.id).delete();
+  else {
+    const newWord = { ...word }
+    delete newWord.isSaved
+    await db.collection(COLLECTION_NAME).add(newWord);
+  }
+
+  return !(word?.isSaved)
 }
