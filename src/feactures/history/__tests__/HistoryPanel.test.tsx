@@ -19,24 +19,28 @@ function spyHistory() {
     const spyGetHistory = jest.spyOn(db, "getHistory");
     spyGetHistory.mockResolvedValue(expectedHistory);
 }
-it("should render HistoryPanel component with info", async () => {
-    spyHistory();
-    const dateFormmated = moment(expectedDate).format("YYYY-MM-DD hh:mm A")
-    render(<HistoryPanel />)
-    const wordElement = await screen.findByText(new RegExp(expectedWord.word))
-    const dateElement = await screen.findByText(new RegExp(dateFormmated))
 
-    expect(wordElement).toBeInTheDocument();
-    expect(dateElement).toBeInTheDocument();
-})
+describe("HistoryPanel component", () => {
 
-it("should dispatch SET_CURRENT_DEFINITION action when click word element", async () => {
-    const spyStoreDispatch = jest.spyOn(store, "dispatch")
-    spyHistory()
+    it("should render HistoryPanel component with info", async () => {
+        spyHistory();
+        const dateFormmated = moment(expectedDate).format("YYYY-MM-DD hh:mm A")
+        render(<HistoryPanel />)
+        const wordElement = await screen.findByText(new RegExp(expectedWord.word))
+        const dateElement = await screen.findByText(new RegExp(dateFormmated))
 
-    render(<HistoryPanel />)
-    const wordElement = await screen.findByText(new RegExp(expectedWord.word))
-    fireEvent.click(wordElement);
-    expect(spyStoreDispatch).toHaveBeenCalled();
-    expect(spyStoreDispatch).toHaveBeenLastCalledWith(setCurrentDefinition(expectedWord))
+        expect(wordElement).toBeInTheDocument();
+        expect(dateElement).toBeInTheDocument();
+    })
+
+    it("should dispatch SET_CURRENT_DEFINITION action when click word element", async () => {
+        const spyStoreDispatch = jest.spyOn(store, "dispatch")
+        spyHistory()
+
+        render(<HistoryPanel />)
+        const wordElement = await screen.findByText(new RegExp(expectedWord.word))
+        fireEvent.click(wordElement);
+        expect(spyStoreDispatch).toHaveBeenCalled();
+        expect(spyStoreDispatch).toHaveBeenLastCalledWith(setCurrentDefinition(expectedWord))
+    })
 })

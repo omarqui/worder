@@ -10,25 +10,28 @@ const expectedWord = {
     date: new Date("2017-12-19")
 };
 
-it("should return History", async () => {
-    const documentMocked = {
-        ...expectedWord,
-        date: { toDate: () => expectedWord.date }
-    };
+describe("SearhHistory dataService", () => {
 
-    const expectedHistory: Array<IDictonaryData> = [expectedWord];
-    const { dbSpy, firestoreMock: firebaseMock } = getDbSpay(documentMocked)
+    it("should return History", async () => {
+        const documentMocked = {
+            ...expectedWord,
+            date: { toDate: () => expectedWord.date }
+        };
 
-    const result = await getHistory()
-    expect(dbSpy).toHaveBeenCalledWith("searchHistory")
-    expect(firebaseMock.orderBy).toHaveBeenCalled()
-    expect(result).toEqual(expectedHistory)
-})
+        const expectedHistory: Array<IDictonaryData> = [expectedWord];
+        const { dbSpy, firestoreMock: firebaseMock } = getDbSpay(documentMocked)
 
-it("should save word to history", () => {
-    const { dbSpy, firestoreMock: firebaseMock } = getDbSpay()
+        const result = await getHistory()
+        expect(dbSpy).toHaveBeenCalledWith("searchHistory")
+        expect(firebaseMock.orderBy).toHaveBeenCalled()
+        expect(result).toEqual(expectedHistory)
+    })
 
-    saveWordToHistory(expectedWord)
-    expect(dbSpy).toHaveBeenCalledWith("searchHistory")
-    expect(firebaseMock.add).toHaveBeenCalledWith(expectedWord)
+    it("should save word to history", () => {
+        const { dbSpy, firestoreMock: firebaseMock } = getDbSpay()
+
+        saveWordToHistory(expectedWord)
+        expect(dbSpy).toHaveBeenCalledWith("searchHistory")
+        expect(firebaseMock.add).toHaveBeenCalledWith(expectedWord)
+    })
 })
