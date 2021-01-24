@@ -19,14 +19,11 @@ export const getSavedWords = async (): Promise<Array<IDictonaryData>> => {
     }
 
   });
-  console.log(savedList);
   
   return savedList;
 }
 
 export const saveWordToFavorite = async (word: IDictonaryData): Promise<any> => {
-  console.log(word);
-  
   if (word?.isSaved || false)
     await db.collection(COLLECTION_NAME).doc(word.id).delete();
   else {
