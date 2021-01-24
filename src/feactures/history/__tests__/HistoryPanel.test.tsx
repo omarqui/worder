@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, store } from "../../../utils/tests_utils";
+import { fireEvent, render, screen, store } from "../../../utils/tests_utils/customRenderWithState";
 import HistoryPanel from "../HistoryPanel";
 import * as db from '../../../dataServices/SearchHistory';
 import { IDictonaryData } from "../../../types";
