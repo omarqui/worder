@@ -6,10 +6,10 @@ const COLLECTION_NAME = 'searchHistory';
 export const getHistory = async (): Promise<Array<IDictonaryData>> => {
   const data = await db.collection(COLLECTION_NAME).orderBy("date", "desc").get();
   const logs = data.docs.map(doc => {
-    const { id, meanings, phonetics, word, date } = doc.data();
+    const { meanings, phonetics, word, date } = doc.data();
 
     return {
-      id,
+      id: doc.id,
       meanings,
       phonetics,
       word,
