@@ -18,18 +18,19 @@ export const MeaningCard = ({ meaning }: MeaningProps) => {
 
                 {meaning.definitions.map((def, position) => {
                     const isLastDefinition = (meaning.definitions.length === position + 1);
-                    
+
                     return (
                         <div className={
-                            isLastDefinition ? 
+                            isLastDefinition ?
                                 "lastDefinition" :
-                                "definition"}>
+                                "definition"}
+                             key={position}>
                             <div className="definitionLayout">
                                 <div className="definitionPosition">{position + 1}</div>
-                                <div 
-                                    className={ 
-                                        isLastDefinition ? 
-                                            "lastDefinitionWrapper" : 
+                                <div
+                                    className={
+                                        isLastDefinition ?
+                                            "lastDefinitionWrapper" :
                                             "definitionWrapper"
                                     }>
                                     <DefinitionText value={def.definition} />
