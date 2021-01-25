@@ -5,10 +5,10 @@ type definitionTextProps = {
     value: string
 }
 
-export const DefinitionText = ({value}: definitionTextProps)=> {
-   return (
+export const DefinitionText = ({ value }: definitionTextProps) => {
+    return (
         <div>
             <span>{value}</span>
         </div>
-   ) 
+    )
 }
