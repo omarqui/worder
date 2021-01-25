@@ -1,5 +1,5 @@
 import { IDictonaryData } from "../types";
-import { makeUrlSearchWord } from "../utils/makeUrls";
+import { makeUrlSearchWord } from "../utils/HelperFuctions";
 export async function makeSearch(word: string): Promise<IDictonaryData> {
     const res = await fetch(makeUrlSearchWord(word));
     const data: IDictonaryData[] = await res.json();

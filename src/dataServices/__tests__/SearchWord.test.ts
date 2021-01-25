@@ -1,6 +1,6 @@
 import { makeSearch } from "../SearchWord";
 import fetchMock from "fetch-mock";
-import { makeUrlSearchWord } from "../../utils/makeUrls";
+import { makeUrlSearchWord } from "../../utils/HelperFuctions";
 
 const expectedWord = {
     meanings: [],
