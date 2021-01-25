@@ -55,6 +55,6 @@ export function toggleSaved(): AppThunk {
         const newSavedStated = await saveWordToFavorite(currentWord)
         
         dispach(updateSaved(newSavedStated));
-        alert(newSavedStated ? "Guardado" : "Eliminado")
+        // alert(newSavedStated ? "Guardado" : "Eliminado")
     }
 }

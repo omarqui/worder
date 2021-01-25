@@ -9,19 +9,18 @@ type DefinitionsSectionProps = {
     dictionary: IDictonaryData
 }
 
-export const DefinitionsSection = ({dictionary} : DefinitionsSectionProps ) => {
+export const DefinitionsSection = ({ dictionary }: DefinitionsSectionProps) => {
     const dispatch = useDispatch();
     const btnClass = `bntSave btn btn-${dictionary.isSaved ? "warning" : "outline-secundary"}`;
-    const iconClass = `bi bi-star-${dictionary.isSaved ? "fill" : "fill"}`;
 
     return (
         <div >
             <div className="definitionSectionTitle">
                 <h3 >Definitions for "{dictionary.word}"</h3>
-                <button 
-                    className={btnClass} 
-                    onClick={()=>dispatch(toggleSaved())}>
-                    <i className={iconClass}></i>
+                <button
+                    className={btnClass}
+                    onClick={() => { dispatch(toggleSaved()) }}>
+                    <i className="bi bi-star-fill" ></i>
                 </button>
             </div>
             {
