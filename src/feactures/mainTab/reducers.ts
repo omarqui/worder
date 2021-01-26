@@ -1,6 +1,6 @@
 import { CHANGE_TAB_SELECTED, IMainTabState, IMainTabActions } from "./types";
 
-const initialState: IMainTabState = {
+export const initialState: IMainTabState = {
     tabSelected : 2
 }
 
