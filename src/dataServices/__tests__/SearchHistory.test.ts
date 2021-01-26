@@ -13,10 +13,10 @@ const expectedWord = {
 describe("SearhHistory dataService", () => {
 
     it("should return History", async () => {
-        const documentMocked = {
+        const documentMocked = [{
             ...expectedWord,
             date: { toDate: () => expectedWord.date }
-        };
+        }];
 
         const expectedHistory: Array<IDictonaryData> = [expectedWord];
         const { dbSpy, firestoreMock: firebaseMock } = getDbSpay(documentMocked)

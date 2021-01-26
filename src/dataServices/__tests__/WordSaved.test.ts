@@ -12,10 +12,10 @@ describe("Word saved data service", () => {
     };
 
     it("should return saved words when sucessfull", async () => {
-        const documentMocked = {
+        const documentMocked = [{
             ...expectedWord,
             date: { toDate: () => expectedWord.date }
-        };
+        }];
 
         const expectedSavedWords: Array<IDictonaryData> = [{
             ...expectedWord,
