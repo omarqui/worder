@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, store } from "../../../utils/tests_utils/customRenderWithState";
+import { fireEvent, render, screen } from "../../../utils/tests_utils/customRenderWithState";
 import HistoryPanel from "../HistoryPanel";
 import * as db from '../../../dataServices/SearchHistory';
 import { IDictonaryData } from "../../../types";
@@ -34,13 +34,12 @@ describe("HistoryPanel component", () => {
     })
 
     it("should dispatch SET_CURRENT_DEFINITION action when click word element", async () => {
-        const spyStoreDispatch = jest.spyOn(store, "dispatch")
         spyHistory()
 
-        render(<HistoryPanel />)
+        const {store} = render(<HistoryPanel />)
         const wordElement = await screen.findByText(new RegExp(expectedWord.word))
         fireEvent.click(wordElement);
-        expect(spyStoreDispatch).toHaveBeenCalled();
-        expect(spyStoreDispatch).toHaveBeenLastCalledWith(setCurrentDefinition(expectedWord))
+        expect(store.dispatch).toHaveBeenCalled();
+        expect(store.dispatch).toHaveBeenLastCalledWith(setCurrentDefinition(expectedWord))
     })
 })

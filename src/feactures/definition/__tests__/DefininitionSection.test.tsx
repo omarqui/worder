@@ -1,10 +1,9 @@
 import React from "react";
-import { render, screen, fireEvent, store } from "../../../utils/tests_utils/customRenderWithState";
+import { render, screen, fireEvent } from "../../../utils/tests_utils/customRenderWithState";
 import { DefinitionsSection } from "../DefinitionsSection";
-import { TOGGLE_SAVED } from "../../search/types";
 import * as db from '../../../dataServices/WordSaved';
-import mockStore from "../../../redux/modkStore";
 import { setCurrentDefinition } from "../../search/actions";
+
 describe("Definition section component", () => {
     const expectedWord = {
         meanings: [],
@@ -14,16 +13,14 @@ describe("Definition section component", () => {
     };
 
     describe("general state", () => {
-        beforeEach(() => {
-            render(<DefinitionsSection dictionary={expectedWord} />)
-        })
         it("should render with word", async () => {
-
+            render(<DefinitionsSection dictionary={expectedWord} />)
             const title = await screen.findByText(new RegExp(expectedWord.word))
             expect(title).toBeInTheDocument()
         })
 
         it("should fire saveWordToFavorite dataservice", async () => {
+            const { store }  = render(<DefinitionsSection dictionary={expectedWord} />)
             store.dispatch(setCurrentDefinition(expectedWord))
             const spySaveToFavorite = jest.spyOn(db, "saveWordToFavorite");
             spySaveToFavorite.mockResolvedValue(true);
