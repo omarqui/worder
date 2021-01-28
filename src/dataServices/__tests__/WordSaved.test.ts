@@ -58,5 +58,4 @@ describe("Word saved data service", () => {
             expect(firestoreMock.delete).toHaveBeenCalled()
         })
     })
-
 })

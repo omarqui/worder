@@ -13,7 +13,7 @@ export function fetchSaved (): AppThunk {
     }
 }
 
-function setSaved(savedList: IDictonaryData[]): ISavedActions {
+export function setSaved(savedList: IDictonaryData[]): ISavedActions {
     return {
         type: SET_SAVED,
         savedList: savedList

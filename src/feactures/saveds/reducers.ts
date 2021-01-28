@@ -4,7 +4,7 @@ import {
     ISavedState 
 } from "./types";
 
-const initialState:ISavedState = {
+export const initialState:ISavedState = {
     savedList: []
 }
 
